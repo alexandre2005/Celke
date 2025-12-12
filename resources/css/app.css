@@ -1,0 +1,346 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-sans:
+        Instrument Sans, ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+@layer utilities {
+    body,
+    html {
+        --font-sans:
+            'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+            'Noto Color Emoji';
+    }
+}
+
+:root {
+    --background: hsl(220 15% 97%);
+    --foreground: hsl(220 15% 10%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(220 15% 10%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(220 15% 10%);
+    --primary: hsl(213 88% 34%); /* azul Docker */
+    --primary-foreground: hsl(0 0% 100%);
+    --secondary: hsl(220 16% 90%);
+    --secondary-foreground: hsl(220 20% 10%);
+    --muted: hsl(220 16% 92%);
+    --muted-foreground: hsl(220 8% 45%);
+    --accent: hsl(213 90% 40%);
+    --accent-foreground: hsl(0 0% 100%);
+    --destructive: hsl(0 84% 60%);
+    --destructive-foreground: hsl(0 0% 98%);
+    --border: hsl(220 14% 85%);
+    --input: hsl(220 14% 90%);
+    --ring: hsl(213 90% 40%);
+    --chart-1: hsl(213 88% 34%);
+    --chart-2: hsl(160 50% 40%);
+    --chart-3: hsl(30 80% 50%);
+    --chart-4: hsl(280 65% 55%);
+    --chart-5: hsl(340 70% 55%);
+    --radius: 0.5rem;
+
+    --sidebar-background: hsl(220 15% 96%);
+    --sidebar-foreground: hsl(220 15% 20%);
+    --sidebar-primary: hsl(213 88% 34%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(220 16% 92%);
+    --sidebar-accent-foreground: hsl(220 15% 15%);
+    --sidebar-border: hsl(220 15% 85%);
+    --sidebar-ring: hsl(213 90% 40%);
+    --sidebar: hsl(220 15% 96%);
+}
+
+.dark {
+    --background: hsl(220 20% 8%);
+    --foreground: hsl(0 0% 98%);
+    --card: hsl(220 20% 10%);
+    --card-foreground: hsl(0 0% 98%);
+    --popover: hsl(220 20% 10%);
+    --popover-foreground: hsl(0 0% 98%);
+    --primary: hsl(213 88% 50%);
+    --primary-foreground: hsl(0 0% 100%);
+    --secondary: hsl(220 15% 20%);
+    --secondary-foreground: hsl(0 0% 98%);
+    --muted: hsl(220 15% 22%);
+    --muted-foreground: hsl(0 0% 65%);
+    --accent: hsl(213 88% 50%);
+    --accent-foreground: hsl(0 0% 100%);
+    --destructive: hsl(0 84% 60%);
+    --destructive-foreground: hsl(0 0% 98%);
+    --border: hsl(220 15% 20%);
+    --input: hsl(220 15% 22%);
+    --ring: hsl(213 88% 50%);
+    --chart-1: hsl(213 88% 50%);
+    --chart-2: hsl(160 60% 45%);
+    --chart-3: hsl(30 80% 55%);
+    --chart-4: hsl(280 65% 60%);
+    --chart-5: hsl(340 75% 55%);
+    --sidebar-background: hsl(220 20% 6%);
+    --sidebar-foreground: hsl(0 0% 98%);
+    --sidebar-primary: hsl(213 88% 50%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(220 15% 15%);
+    --sidebar-accent-foreground: hsl(0 0% 98%);
+    --sidebar-border: hsl(220 15% 18%);
+    --sidebar-ring: hsl(213 88% 50%);
+    --sidebar: hsl(220 20% 8%);
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    /****** Início Conteúdo Principal ******/
+    .content-box {
+        @apply shadow-lg sm:rounded-b-lg text-gray-900 p-4 dark:text-gray-200;
+    }
+
+    .content-box-header {
+        @apply flex justify-between items-center border-b-2 border-gray-100 pb-2 mb-3 dark:border-border;
+    }
+
+    .content-box-title {
+        @apply text-base font-semibold text-gray-600 dark:text-gray-400;
+    }
+
+    .content-box-btn {
+        @apply flex space-x-1;
+    }
+
+    /****** Fim Conteúdo Principal ******/
+
+    /****** Inicio Tabela Listar Registros ******/
+    .table-container {
+        @apply overflow-hidden sm:rounded-lg bg-white shadow-sm dark:bg-gray-950;
+    }
+
+    .table {
+        @apply min-w-full divide-y divide-gray-200 border-separate border-spacing-0 dark:divide-border;
+    }
+
+    .table-header {
+        @apply bg-gray-50 dark:bg-gray-950;
+    }
+
+    .table-row-header {
+        @apply px-6 py-3 text-left text-sm font-medium text-gray-500 tracking-wider border-b border-gray-200 dark:border-border dark:text-gray-300;
+    }
+
+    .table-header.center {
+        @apply text-center;
+    }
+
+    .table-body {
+        @apply hover:bg-gray-50 dark:hover:bg-background;
+    }
+
+    .table-row-body {
+        @apply px-6 py-2 text-sm text-gray-950 border-b border-gray-200 dark:text-gray-300 dark:border-border break-all;
+    }
+
+    .table-actions {
+        @apply px-6 py-2 text-sm text-gray-950 border-b border-gray-200 dark:text-gray-300 dark:border-border text-center table-cell;
+    }
+
+    .table-actions-align {
+        @apply flex flex-row space-x-1 items-center justify-center;
+    }
+
+    /****** Fim Tabela Listar Registros ******/
+
+
+    /****** Início Formulário Pesquisar ******/
+    .form-search {
+        @apply pb-0 grid xl:grid-cols-5 md:grid-cols-2 gap-2 items-end mb-3;
+    }
+
+    /****** Fim Formulário Pesquisar ******/
+
+    /****** Início Detalhes registro ******/
+
+    /* Caixa para apresentar os detalhes do registro */
+    .detail-box {
+        @apply text-sm overflow-hidden sm:rounded-lg bg-white shadow-sm dark:bg-gray-950 p-6 space-y-4;
+    }
+
+    /* Detalhes do registro */
+    .title-detail-content {
+        @apply font-semibold dark:text-gray-400;
+    }
+
+    /* Detalhes do registro */
+    .detail-content {
+        @apply dark:text-gray-300;
+    }
+
+    /****** Fim Detalhes registro ******/
+
+    /****** Início Formulário ******/
+
+    /* Label dos inputs */
+    .form-label {
+        @apply text-gray-600 block text-sm font-semibold dark:text-gray-300;
+    }
+
+    /* Input padrão */
+    .form-input {
+        @apply border p-2 w-full mt-1 rounded-md border-gray-200 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:outline-none dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400;
+    }
+
+    /* Input checkbox */
+    .form-input-checkbox {
+        @apply text-sm text-gray-500 dark:text-gray-400;
+    }
+
+    /* Texto campo obrigatório */
+    .required-field {
+        @apply text-xs text-gray-600 dark:text-gray-500;
+    }
+
+    /* Mensagem de erro no campo */
+    .form-error {
+        @apply text-red-500 text-sm;
+    }
+
+    /****** Fim Formulário ******/
+
+    /****** Início Botões ******/
+    /* Botão azul */
+    .btn-primary {
+        @apply bg-blue-500 text-white text-sm px-2 py-1 rounded hover:bg-blue-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão azul médio */
+    .btn-primary-md {
+        @apply bg-blue-500 text-white text-base px-2 py-1 rounded hover:bg-blue-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão azul claro */
+    .btn-info {
+        @apply bg-cyan-500 text-white text-sm px-2 py-1 rounded hover:bg-cyan-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão azul claro */
+    .btn-info-md {
+        @apply bg-cyan-500 text-white text-base px-2 py-1 rounded hover:bg-cyan-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão verde */
+    .btn-success {
+        @apply bg-green-500 text-white text-sm px-2 py-1 rounded hover:bg-green-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão verde */
+    .btn-success-md {
+        @apply bg-green-500 text-white text-base px-2 py-1 rounded hover:bg-green-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão amarelo */
+    .btn-warning {
+        @apply bg-yellow-500 text-white text-sm px-2 py-1 rounded hover:bg-yellow-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão amarelo */
+    .btn-warning-md {
+        @apply bg-yellow-500 text-white text-base px-2 py-1 rounded hover:bg-yellow-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão vermelho */
+    .btn-danger {
+        @apply bg-red-500 text-white text-sm px-2 py-1 rounded hover:bg-red-600 transition-colors cursor-pointer;
+    }
+
+    /* Botão vermelho médio */
+    .btn-danger-md {
+        @apply bg-red-500 text-white text-base px-2 py-1 rounded hover:bg-red-600 transition-colors cursor-pointer;
+    }
+
+    /* Alinha os botões em linha */
+    .align-icon-btn {
+        @apply flex items-center space-x-1;
+    }
+
+    /****** Fim Botões ******/
+}
+
